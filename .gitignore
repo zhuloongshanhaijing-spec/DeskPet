@@ -1,0 +1,63 @@
+# Xcode
+*.xcuserstate
+*.xcuserdata
+*.xcscheme
+*.xcuserdatad
+*.pbxuser
+*.xccheckout
+*.xcscheme
+*.xcplayground
+*.xcuserdatad
+*.xctest
+*.xcuserdata
+*.xcodeproj/xcshareddata/WorkspaceSettings.xcsettings
+
+# CocoaPods
+Pods/
+podfile.lock
+
+# Carthage
+Carthage/Build/
+
+# Swift Package Manager
+.swiftpm/
+.build/
+
+# Derived data
+DerivedData/
+
+# Build output
+build/
+*.app
+*.dSYM
+
+# Temporary files
+*.swp
+*.swo
+*.tmp
+*.log
+
+# Other
+*.DS_Store
+*.vscode/
+*.idea/
+
+# User-specific files
+*.xcuserdatad/
+*.xcscheme
+*.xcodeproj/xcuserdata
+*.xcodeproj/project.xcuserdata
+
+# Build artifacts
+*.ipa
+*.xcarchive
+*.dSYM
+
+
+# SPM 验证构建产物（tools/spm_build.sh 生成，与 Xcode 项目无关，不提交）
+/Package.swift
+/Package.resolved
+
+# 可选资源（授权受限，不随公开仓库分发；由 tools/setup_optional_live2d.sh 在本地安装）
+deskpet/BoringPet/
+deskpet/BongoResources/

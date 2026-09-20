@@ -1,0 +1,42 @@
+name: Build for macOS
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+
+# https://stackoverflow.com/a/72408109/6942800
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+# Least-privilege: only needs to read code for building.
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build DeskPet
+    runs-on: macos-latest
+    steps:
+    - name: Code Checkout
+      uses: actions/checkout@v4
+
+    - name: Select latest Xcode
+      run: |
+        # 动态选择 runner 上可用的最新 Xcode（不锁定具体版本）
+        ls -d /Applications/Xcode*.app | sort -V | tail -1 | xargs -I{} sudo xcode-select -s {}
+        xcodebuild -version
+
+    - name: Build
+      run: |
+        xcodebuild \
+          -project deskpet.xcodeproj \
+          -scheme deskpet \
+          -configuration Release \
+          -destination 'generic/platform=macOS' \
+          CODE_SIGNING_ALLOWED=NO \
+          build
